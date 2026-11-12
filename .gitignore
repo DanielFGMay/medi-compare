@@ -1,0 +1,24 @@
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+
+# Backend (Java/Maven)
+backend/target/
+*.class
+*.log
+HELP.md
+
+# Frontend (Node/Vite)
+frontend/node_modules/
+frontend/dist/
+
+# Playwright (si llegamos a usarlo)
+**/playwright/.cache/
+
+# IDE y sistema operativo
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
