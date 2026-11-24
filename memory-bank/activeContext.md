@@ -31,3 +31,15 @@ Paso 2 de la Fase 1: rama feature/backend-base, generar el backend con Spring In
 
 ## Notas
 - Al terminar Paso 1 el repo tiene main y test sincronizadas y la BD Neon con PostGIS activo.
+## Cierre de Sesión
+Se activa cuando el usuario escribe "Hasta aquí llegamos por hoy":
+- Paso A: explicar a detalle y paso a paso todo lo construido en la sesión, para que se entienda al 100%.
+- Paso B: plantear un reto técnico estilo entrevista basado exactamente en lo hecho hoy (endpoint extra, bug intencional, validación) para que el usuario lo resuelva solo, y evaluar su solución.
+- Actualizar progress.md y activeContext.md.
+
+## Objetivo profesional y alcance extra
+- Meta: pasar pruebas técnicas de Jr. Full Stack. Portafolio de 3 proyectos; este es el Proyecto 1.
+- Debe demostrar: Java 17, Spring Boot, Spring Security + JWT, CORS, JPA/Hibernate, API REST documentada con Swagger/OpenAPI (springdoc), pruebas con JUnit 5 y Mockito, PostgreSQL + PostGIS, React + TypeScript + Tailwind + Vite, Docker (Dockerfile y docker-compose), nociones de AWS en capa gratuita, flujo con herramientas/agentes de IA, Git flow profesional.
+- Todo gratuito o Free Tier.
+- Tras cada avance importante, indicar los comandos de Git (status, add, commit, push, ramas).
+- Enseñar a usar agentes de IA gratuitos y prompts estructurados.
