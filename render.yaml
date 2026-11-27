@@ -1,0 +1,41 @@
+# Render deployment configuration for Farmacompara
+# Backend: Spring Boot application (Docker)
+# Frontend: React SPA (Static Files via Render)
+# Co-Authored-By: Claude Code <noreply@anthropic.com>
+
+services:
+  - type: web
+    name: farmacompara-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: backend/Dockerfile
+    buildCommand: ""
+    startCommand: "java -jar /app/app.jar"
+    envVars:
+      - key: JWT_SECRET
+        value: "CHANGE_ME_IN_PRODUCTION_USE_RENDER_SECRETS_VIA_DASHBOARD"
+        type: plaintext
+      - key: JWT_EXPIRATION
+        value: "86400000"
+        type: plaintext
+      - key: SPRING_PROFILES_ACTIVE
+        value: "prod"
+        type: plaintext
+      - key: DATABASE_URL
+        value: "${DATABASE_URL}"
+        type: plaintext
+
+  - type: static
+    name: farmacompara-frontend
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist
+    # Frontend is a React SPA that calls the backend API
+    # The API URL should be configured via VITE_API_BASE environment variable
+    # or relative paths work for same-domain deployment
+
+# Optional: Cron job for scheduled scraping
+# Uncomment to enable daily scraping at 2 AM UTC
+# cron:
+#   - schedule: "0 2 * * *"
+#     command: curl -X POST ${SERVICE_URL}/api/admin/scrape

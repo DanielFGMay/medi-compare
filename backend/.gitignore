@@ -1,0 +1,57 @@
+# Maven / Gradle
+target/
+build/
+*.jar
+*.war
+*.ear
+
+# Maven wrapper
+.mvnw
+.mvn/
+
+# Compiled classes
+*.class
+*.jar
+*.class
+
+# Logs
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+application-*.yml
+*.keystore
+*.jks
+
+# Test coverage
+jacoco/
+.coverage/
+
+# Dist
+dist/
+release/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

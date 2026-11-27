@@ -2,9 +2,9 @@
 # Usa variables de entorno del archivo .env
 spring:
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/farmacompara}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:password}
+    url: jdbc:postgresql://ep-falling-bread-be81rbnt.c-9.us-east-2.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_GrW7DptLU3BI
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -21,10 +21,12 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+  # Deshabilitar usuario por defecto de Spring Security
+  security:
+    user:
+      password: ""
+
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-
-# Desabilitar Flyway temporalmente para pruebas
-spring.flyway.enabled=false
