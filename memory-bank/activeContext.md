@@ -1,45 +1,33 @@
 # Active Context
 
 ## Fase actual
-Fase 1 — Cimientos. Paso 1: Git, ramas main/test/feature, estructura base y BD PostGIS en la nube.
+Fase 1 — Cimientos. Paso 2: Backend Spring Boot conectado a Neon.
 
 ## Reglas Permanentes del Mentor
 Estas reglas aplican en TODOS los chats de este proyecto, sin que el usuario deba repetirlas.
 
-1. Explicar TODO el código y los comandos. Cada vez que se entregue un archivo de código, configuración, SQL o un comando de terminal, explicar obligatoriamente:
-   - Para qué sirve exactamente cada parte o bloque.
-   - Qué cosas se pueden modificar o personalizar.
-   - Qué pasa si se omite o borra esa parte (qué error daría o qué dejaría de funcionar).
-2. Guiar paso a paso con el flujo de ramas de Git usando Git Bash: crear una rama feature/... desde test, trabajar y hacer commits limpios (Conventional Commits), fusionar en test (merge --no-ff), verificar, y solo entonces fusionar test en main. Explicar cómo moverse entre ramas y resolver dudas de Git en cada fase.
-3. Todos los comandos de terminal son para Git Bash en Windows.
-4. Ir fase por fase y paso por paso: Planificar -> MVP -> Escalar. No adelantar pasos sin confirmación.
-5. Código backend en Java 17 + Spring Boot con arquitectura en capas (controller, service, repository, model/entity, dto, scraper, config); frontend en React + TypeScript.
-6. Precios siempre reales (scraper), nunca simulados. Guiar el scraping de forma responsable (ver techContext.md).
-7. Nivel: desarrollador Jr. que ya desplegó apps reales. Sin explicaciones triviales, pero con buenas prácticas y código limpio.
-8. Al terminar cada paso, actualizar progress.md y activeContext.md.
+1. **MODO AUTÓNOMO Y VISUAL**: Tienes permiso total para crear/editar archivos, ejecutar comandos en Git Bash y usar Playwright MCP para abrir el navegador real, inspeccionar tiendas (Farmacias Guadalajara, Del Ahorro, Similares) y probar visualmente el frontend en localhost. No pidas confirmaciones intermedias; actúa directo.
+2. **AHORRO DE TOKENS**: Nunca leas node_modules, target, .git ni archivos masivos. Si no existe .claudeignore, créalo excluyendo esas carpetas y .env. Resume respuestas en terminal a máximo 5 líneas al terminar cada bloque.
+3. **ESTRATEGIA LOCAL -> NUBE GRATUITA**: Primero construye TODO funcionando 100% local (Spring Boot + Neon + Scrapers + React en localhost). Solo luego prepara archivos de despliegue gratuito (Dockerfile + Render para backend, Cloudflare Pages para frontend).
 
 ## Qué se decidió
-Ver projectbrief.md y techContext.md. Ciudad piloto: Villahermosa / Cunduacán, Tabasco.
+Ver techContext.md. Ciudad piloto: Villahermosa / Cunduacán, Tabasco. Paquete base: `com.farmacompara`.
 
 ## Siguiente paso
-Paso 2 de la Fase 1: rama feature/backend-base, generar el backend con Spring Initializr dentro de backend/, conectar a Neon con variables de entorno y verificar con un endpoint de salud.
+Fase 1 Paso 3: frontend Vite + React + TS + Tailwind base.
 
 ## Preguntas abiertas
-- Nombre definitivo del proyecto y paquete base Java.
-- Neon vs Supabase (se prueba primero Neon).
-- Hosting gratuito del backend (Render u otro) y estrategia del cron.
+- Hosting gratuito del backend (Render) y estrategia del cron.
 
 ## Notas
-- Al terminar Paso 1 el repo tiene main y test sincronizadas y la BD Neon con PostGIS activo.
+- Fase 1 Paso 1 completado: Neon + PostGIS configurado, ramas main/test listas.
 ## Cierre de Sesión
 Se activa cuando el usuario escribe "Hasta aquí llegamos por hoy":
-- Paso A: explicar a detalle y paso a paso todo lo construido en la sesión, para que se entienda al 100%.
-- Paso B: plantear un reto técnico estilo entrevista basado exactamente en lo hecho hoy (endpoint extra, bug intencional, validación) para que el usuario lo resuelva solo, y evaluar su solución.
+- Paso A: explicar a detalle y paso a paso todo lo construido en la sesión.
+- Paso B: plantear un reto técnico estilo entrevista basado exactamente en lo hecho hoy (endpoint extra, bug intencional, validación) para que el usuario lo resuelva solo.
 - Actualizar progress.md y activeContext.md.
 
 ## Objetivo profesional y alcance extra
-- Meta: pasar pruebas técnicas de Jr. Full Stack. Portafolio de 3 proyectos; este es el Proyecto 1.
-- Debe demostrar: Java 17, Spring Boot, Spring Security + JWT, CORS, JPA/Hibernate, API REST documentada con Swagger/OpenAPI (springdoc), pruebas con JUnit 5 y Mockito, PostgreSQL + PostGIS, React + TypeScript + Tailwind + Vite, Docker (Dockerfile y docker-compose), nociones de AWS en capa gratuita, flujo con herramientas/agentes de IA, Git flow profesional.
+- Meta: pasar pruebas técnicas de Jr. Full Stack. Proyecto 1.
+- Demostrar: Java 17, Spring Boot, Spring Security + JWT, CORS, JPA/Hibernate, API REST documentada con Swagger (springdoc), pruebas JUnit 5 + Mockito, PostgreSQL + PostGIS, React + TS + Tailwind + Vite, Docker, flujo Git profesional.
 - Todo gratuito o Free Tier.
-- Tras cada avance importante, indicar los comandos de Git (status, add, commit, push, ramas).
-- Enseñar a usar agentes de IA gratuitos y prompts estructurados.

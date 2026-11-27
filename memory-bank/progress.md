@@ -6,8 +6,8 @@
 - [x] Inicializar memory-bank
 
 ## Fase 1 — Cimientos
-- [ ] Paso 1: Git, ramas main/test/feature, estructura base, Neon + PostGIS
-- [ ] Paso 2: backend Spring Boot base conectado a Neon (rama feature/backend-base)
+- [x] Paso 1: Git, ramas main/test/feature, estructura base, Neon + PostGIS
+- [x] Paso 2: backend Spring Boot base conectado a Neon (rama feature/backend-base)
 - [ ] Paso 3: frontend Vite + React + TS + Tailwind
 - [ ] Paso 4: CI básico en GitHub Actions
 
@@ -35,3 +35,12 @@
 
 ## Historial
 - Fase 0 cerrada con decisiones en techContext.md.
+## Estado actual (27 Nov 2026)
+- **Fase 1 · Cimientos: Paso 2 completado al 100%.**
+  - Backend Spring Boot 3.2.5 creado con `pom.xml` (Web, JPA, Security, Validation, Actuator, Flyway, Swagger).
+  - Endpoint `/api/health` implementado y probado exitosamente en http://localhost:8081/api/health.
+  - Conexión a Neon PostgreSQL verificada: Flyway validó 1 migración exitosamente.
+  - JPA/Hibernate conectado a Neon (PostgreSQL 18.7 con PostGIS).
+  - Estructura en capas creada (controller, service, repository, model, dto, config, scraper).
+  - Configuración CORS y Security básica implementadas.
+  - Docker configurado para despliegue futuro.
