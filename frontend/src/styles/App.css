@@ -1,0 +1,84 @@
+/* Estilos del componente App */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+  color: white;
+}
+
+.app-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+.app-subtitle {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f1f5f9;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Componente HealthCheck */
+.health-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.health-card h3 {
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  font-size: 1.3rem;
+}
+
+.status-checking {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.status-ok {
+  color: #16a34a;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.status-error {
+  color: #dc2626;
+  font-size: 0.95rem;
+}
+
+.health-details {
+  margin: 0.4rem 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
