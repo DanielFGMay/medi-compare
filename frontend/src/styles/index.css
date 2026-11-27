@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Estilos base del frontend Farmacompara */
 
 html, body, #root {

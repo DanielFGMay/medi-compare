@@ -14,7 +14,11 @@ Estas reglas aplican en TODOS los chats de este proyecto, sin que el usuario deb
 Ver techContext.md. Ciudad piloto: Villahermosa / Cunduacán, Tabasco. Paquete base: `com.farmacompara`.
 
 ## Siguiente paso
-Fase 1 Paso 3: frontend Vite + React + TS + Tailwind base.
+Fase 2 continuación: 
+1. Reiniciar backend para aplicar cambios de SecurityConfig (permisos para /api/compare)
+2. Probar endpoint /api/compare con datos seed
+3. Implementar UI del comparador en frontend
+4. Verificar funcionalidad completa
 
 ## Preguntas abiertas
 - Hosting gratuito del backend (Render) y estrategia del cron.

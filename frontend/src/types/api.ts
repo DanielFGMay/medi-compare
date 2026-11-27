@@ -1,6 +1,6 @@
 /**
  * Tipos para la API del backend
- * Definidos para futura integración con el comparador de precios
+ * Actualizados para coincidir con la nueva estructura del comparador
  */
 
 export interface HealthResponse {
@@ -13,40 +13,86 @@ export interface Chain {
   id: string;
   name: string;
   logoUrl?: string;
+  website?: string;
+  isActive?: boolean;
 }
 
 export interface Branch {
   id: string;
   chainId: string;
   name: string;
-  address: string;
+  address?: string;
   latitude: number;
   longitude: number;
+  isActive?: boolean;
 }
 
 export interface ProductCategory {
   id: string;
   name: string;
   code: string;
+  isActive?: boolean;
 }
 
 export interface Product {
   id: string;
   name: string;
-  category: string;
+  category?: ProductCategory;
   isRx: boolean;
+  strength?: string;
+  form?: string;
 }
 
 export interface Offer {
   id: string;
   productId: string;
   chainId: string;
+  branchId?: string;
   price: number;
   pricePromo?: number;
   promoText?: string;
-  productUrl: string;
+  productUrl?: string;
   scrapedAt: string;
-  branchId?: string;
+  createdAt?: string;
+}
+
+export interface UserLocation {
+  latitude: number;
+  longitude: number;
+}
+
+export interface NearestBranch {
+  id: string;
+  chainId: string;
+  name: string;
+  address?: string;
+  latitude: number;
+  longitude: number;
+  distanceKm?: number;
+}
+
+export interface OfferComparison {
+  chainId: string;
+  chainName: string;
+  chainLogoUrl?: string;
+  chainWebsite?: string;
+  price: number;
+  pricePromo?: number;
+  effectivePrice: number;
+  promoText?: string;
+  productUrl?: string;
+  lastScrapedAt: string;
+  nearestBranch?: NearestBranch;
+}
+
+export interface PriceComparison {
+  productId: string;
+  productName: string;
+  isRx: boolean;
+  offerComparisons: OfferComparison[];
+  bestPrice: number;
+  bestChainId: string;
+  userLocation: UserLocation;
 }
 
 export interface SearchRequest {
@@ -55,13 +101,11 @@ export interface SearchRequest {
   longitude?: number;
   radiusKm?: number;
   categoryId?: string;
+  isRx?: boolean;
 }
 
-export interface PriceComparison {
-  productId: string;
-  productName: string;
-  offers: Offer[];
-  bestPrice: number;
-  bestChainId: string;
-  closestBranch: Branch;
+export interface CategoryFilter {
+  id: string;
+  label: string;
+  value: 'all' | 'otc' | 'rx' | 'general';
 }

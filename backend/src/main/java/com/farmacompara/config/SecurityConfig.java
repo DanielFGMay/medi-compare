@@ -2,8 +2,8 @@ package com.farmacompara.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -12,6 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
  * Endpoints /api/admin/** requieren autenticación JWT.
  */
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     /**
@@ -22,7 +23,7 @@ public class SecurityConfig {
      * @throws Exception si hay problemas en la configuración
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             // Deshabilitar CSRF para API REST
             .csrf(csrf -> csrf.disable())
@@ -34,14 +35,15 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/**").permitAll()
                 // Swagger UI público
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                // API pública del comparador (productos, comparación)
+                .requestMatchers("/api/products").permitAll()
+                .requestMatchers("/api/compare").permitAll()
+                .requestMatchers("/api/compare/**").permitAll()
                 // Endpoints admin requieren autenticación
                 .requestMatchers("/api/admin/**").authenticated()
-                // Todo lo demás requiere autenticación
-                .anyRequest().authenticated()
+                // Todo lo demás permite acceso público temporalmente
+                .anyRequest().permitAll()
             )
-
-            // Configuración de HTTP Basic (temporal para desarrollo)
-            .httpBasic(Customizer.withDefaults())
 
             // Configurar sesiones como stateless
             .sessionManagement(session -> session

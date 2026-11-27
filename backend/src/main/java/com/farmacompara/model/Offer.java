@@ -25,10 +25,10 @@ public class Offer {
     @JoinColumn(name = "chain_id", nullable = false)
     private Chain chain;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false, columnDefinition = "numeric(10,2)")
     private BigDecimal price;
 
-    @Column(name = "price_promo", precision = 10, scale = 2)
+    @Column(name = "price_promo", columnDefinition = "numeric(10,2)")
     private BigDecimal pricePromo;
 
     @Column(name = "promo_text")
