@@ -1,12 +1,25 @@
-# Backend Farmacompara - Dockerfile para producción
+# Backend Farmacompara - Multi-stage Dockerfile para producción
 # Usa JDK 17 (Spring Boot 3.x requiere al menos Java 17)
-FROM eclipse-temurin:17-jre-alpine AS runtime
 
-# Directorio de trabajo
+# Build stage
+FROM eclipse-temurin:17-jdk-alpine AS build
 WORKDIR /app
 
-# Copiar JAR de builds (se construye en stage de compilación)
-# Para desarrollo, usamos maven para compilar en tiempo de build
+# Copy maven wrapper and pom
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+# Download dependencies (cached layer)
+RUN ./mvnw dependency:go-offline -B
+
+# Copy source code and build
+COPY src ./src
+RUN ./mvnw package -DskipTests -B
+
+# Runtime stage
+FROM eclipse-temurin:17-jre-alpine AS runtime
+WORKDIR /app
 
 # Variables de entorno
 ENV SPRING_PROFILES_ACTIVE=prod
@@ -20,12 +33,8 @@ RUN addgroup -g 1001 -S appgroup && \
     adduser -u 1001 -S appuser -G appgroup
 USER appuser
 
-# Copiar el JAR (en producción real, se usa multi-stage build)
-# ESTE CONTENEDOR ES PARA DESARROLLO
-COPY --chown=appuser:appgroup mvnw ./
-COPY --chown=appuser:appgroup .mvn ./
-COPY --chown=appuser:appgroup pom.xml ./
-COPY --chown=appuser:appgroup target/*.jar app.jar
+# Copiar el JAR compilado
+COPY --from=build /app/target/*.jar app.jar
 
 # Comando de ejecución
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

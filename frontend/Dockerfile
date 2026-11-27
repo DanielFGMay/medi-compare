@@ -6,13 +6,13 @@ FROM node:20-alpine AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package.json package-lock.json ./
+COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --prefer-offline
 
 # Copy source code and build
-COPY src ./src
-COPY public ./public
-COPY tsconfig.json vite.config.ts ./
+COPY frontend/src ./src
+COPY frontend/public ./public
+COPY frontend/tsconfig.json frontend/vite.config.ts ./
 RUN npm run build
 
 # Runtime stage with nginx
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
 EXPOSE 80
