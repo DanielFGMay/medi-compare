@@ -1,0 +1,31 @@
+# Render deployment configuration for Farmacompara
+# Backend: Spring Boot application (Docker)
+# Frontend: Deployed separately to Cloudflare Pages (see wrangler.toml)
+# Co-Authored-By: Claude Code <noreply@anthropic.com>
+
+services:
+  - type: web
+    name: farmacompara-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: JWT_SECRET
+        value: "CHANGE_ME_IN_PRODUCTION_USE_RENDER_SECRETS_VIA_DASHBOARD"
+        type: plaintext
+      - key: JWT_EXPIRATION
+        value: "86400000"
+        type: plaintext
+      - key: SPRING_PROFILES_ACTIVE
+        value: "prod"
+        type: plaintext
+      - key: DATABASE_URL
+        value: "${DATABASE_URL}"
+        type: plaintext
+
+# Optional: Cron job for scheduled scraping
+# Uncomment to enable daily scraping at 2 AM UTC
+# cron:
+#   - schedule: "0 2 * * *"
+#     command: curl -X POST ${SERVICE_URL}/api/admin/scrape

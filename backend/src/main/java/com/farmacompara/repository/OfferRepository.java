@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -39,4 +40,36 @@ public interface OfferRepository extends JpaRepository<Offer, UUID> {
     @Modifying
     @Query("DELETE FROM Offer o WHERE o.scrapedAt < :before")
     void deleteOldOffers(@Param("before") LocalDateTime before);
+
+    /**
+     * Encuentra la mejor oferta (precio más bajo) por cadena para un producto
+     * Considera precio promocional si existe
+     */
+    @Query("""
+        SELECT o FROM Offer o
+        WHERE o.product.id = :productId
+          AND o.chain.id IN :chainIds
+          AND o.price IS NOT NULL
+        ORDER BY o.chain.id, COALESCE(o.pricePromo, o.price) ASC
+        """)
+    List<Offer> findBestOfferPerChainForProduct(
+            @Param("productId") UUID productId,
+            @Param("chainIds") List<UUID> chainIds
+    );
+
+    /**
+     * Encuentra la oferta más reciente por cadena para un producto
+     * (para mostrar la fecha de última consulta)
+     * USANDO CONSULTA NATIVA PORQUE DISTINCT ON NO FUNCIONA EN HQL
+     */
+    @Query(value = """
+        SELECT * FROM offer o
+        WHERE o.product_id = :productId
+          AND o.chain_id IN (:chainIds)
+        ORDER BY o.chain_id, o.scraped_at DESC
+        """, nativeQuery = true)
+    List<Offer> findLatestOfferPerChainForProductNative(
+            @Param("productId") UUID productId,
+            @Param("chainIds") List<UUID> chainIds
+    );
 }

@@ -22,10 +22,10 @@ public class Branch {
     @Column
     private String address;
 
-    @Column(precision = 10, scale = 8)
+    @Column(columnDefinition = "double precision")
     private Double latitude;
 
-    @Column(precision = 11, scale = 8)
+    @Column(columnDefinition = "double precision")
     private Double longitude;
 
     @Column(name = "is_active")

@@ -14,11 +14,13 @@ public class SiteRecognizer {
     private Boolean termsOfUseAllowsScraping = null;
 
     public SiteRecognizer(String baseUrl) {
+        String resolvedUrl = baseUrl;
         try {
-            this.baseUrl = new URL(baseUrl).getProtocol() + "://" + new URL(baseUrl).getHost();
+            resolvedUrl = new URL(baseUrl).getProtocol() + "://" + new URL(baseUrl).getHost();
         } catch (Exception e) {
-            this.baseUrl = baseUrl;
+            // Keep original baseUrl if URL parsing fails
         }
+        this.baseUrl = resolvedUrl;
     }
 
     public String getBaseUrl() {

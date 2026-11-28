@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-interface HealthResponse {
-  status: string;
-  timestamp: string;
-  service: string;
-}
+import { api, HealthResponse } from '../lib/api';
 
 /**
  * Componente que muestra el estado de conexión con el backend
@@ -18,11 +13,7 @@ export const HealthCheck: React.FC = () => {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const response = await fetch('/api/health');
-        if (!response.ok) {
-          throw new Error('Error en la respuesta del servidor');
-        }
-        const data: HealthResponse = await response.json();
+        const data = await api.healthCheck();
         setHealth(data);
         setError(null);
       } catch (err) {

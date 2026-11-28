@@ -5,7 +5,8 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:dev}
 
 server:
-  port: ${SERVER_PORT:8080}
+  # Render usa PORT, Spring Boot usa SERVER_PORT - soportamos ambos
+  port: ${PORT:${SERVER_PORT:8080}}
 
 # Seguridad
 jwt:

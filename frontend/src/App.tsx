@@ -1,4 +1,3 @@
-import React from 'react';
 import { HealthCheck } from './components/HealthCheck';
 import './styles/App.css';
 
