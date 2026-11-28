@@ -1,14 +1,14 @@
 # Cloudflare Pages configuration for Farmacompara Frontend
 # This is a STATIC SPA (React + Vite), NOT a Worker
 # Deploy with: npx wrangler pages deploy .
-# Or use Cloudflare Pages dashboard with build command: cd frontend && npm run build
+# Or use Cloudflare Pages dashboard with build command: npm install --prefix frontend && npm run build --prefix frontend
 # Output directory: frontend/dist
 
 name = "farmacompara-frontend"
 main = "frontend/dist/index.html"
 
 [build]
-command = "cd frontend && npm run build"
+command = "npm install --prefix frontend && npm run build --prefix frontend"
 cwd = "."
 watch_dir = "frontend/src"
 
