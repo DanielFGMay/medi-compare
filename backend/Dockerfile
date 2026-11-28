@@ -11,6 +11,9 @@ COPY backend/mvnw .
 COPY backend/.mvn .mvn
 COPY backend/pom.xml .
 
+# Fix permissions for mvnw (Error 126: permission denied in Linux)
+RUN chmod +x mvnw
+
 # Download dependencies (cached layer)
 RUN ./mvnw dependency:go-offline -B
 
