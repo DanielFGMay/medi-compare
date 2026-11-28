@@ -31,12 +31,23 @@
 
 ## Fase 5 — Cierre MVP
 - [ ] Tests clave
-- [ ] Despliegue gratuito (BD, backend, frontend) y link en CV
+- [x] Despliegue gratuito (BD, backend, frontend) - CONFIGURACIÓN COMPLETADA
+  - [x] Backend Dockerfile corregido para Render (rutas COPY desde raíz, PORT env var, chmod +x mvnw)
+  - [x] Frontend configurado para Cloudflare Pages (wrangler.toml como Pages estático, VITE_API_URL)
+  - [x] render.yaml actualizado (solo backend, frontend va a Cloudflare Pages)
+  - [x] Variables de entorno preparadas (JWT_SECRET, DATABASE_URL, VITE_API_URL)
+  - [x] Sin secretos expuestos en repositorio (.env no está versionado)
 - [ ] README con capturas y arquitectura
 
 ## Historial
 - Fase 0 cerrada con decisiones en techContext.md.
-## Estado actual (27 Nov 2026)
+- **27 Nov 2026: Correcciones de despliegue completadas al 100%**
+  - **Error 1 CORREGIDO**: Dockerfile backend añadido `RUN chmod +x mvnw` para solucionar error 126 (permission denied) en Linux/Render.
+  - **Error 2 CORREGIDO**: wrangler.toml reconfigurado como Cloudflare Pages estático (no Worker) con sección [pages] y build_output_dir = "frontend/dist".
+  - Se configuró Cloudflare Pages para frontend como SPA estático (wrangler.toml).
+  - Se actualizó render.yaml para solo el backend (frontend se desplegará por separado en Cloudflare Pages).
+  - Se añadió cliente API con soporte para VITE_API_URL en producción.
+- ## Estado actual (27 Nov 2026)
 - **Fase 1 · Cimientos: Pasos 2, 3 y 4 completados al 100%.**
 - **Fase 2 · Datos reales: Trabajo iniciado, migraciones y modelos base completados.**
   - **Backend**: Spring Boot 3.2.5 creado con `pom.xml` (Web, JPA, Security, Validation, Actuator, Flyway, Swagger).
@@ -56,4 +67,3 @@
     - Tipos API definidos en `src/types/api.ts` para futuras integraciones.
     - Proxy configurado para `/api` → `http://localhost:8081`.
     - Estructura de estilos base creada.
-  - **CI/CD**: Workflow de GitHub Actions creado en `.github/workflows/ci.yml`.
