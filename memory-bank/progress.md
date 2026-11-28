@@ -37,6 +37,8 @@
   - [x] render.yaml actualizado (solo backend, frontend va a Cloudflare Pages)
   - [x] Variables de entorno preparadas (JWT_SECRET, DATABASE_URL, VITE_API_URL)
   - [x] Sin secretos expuestos en repositorio (.env no está versionado)
+  - [x] **Corrección definitiva Render**: application-prod.yml lee ${SPRING_DATASOURCE_URL} con fallback a ${DB_URL} para Neon PostgreSQL
+  - [x] **Corrección definitiva Cloudflare Pages**: wrangler.toml build command usa `npm install --prefix frontend && npm run build --prefix frontend`
 - [ ] README con capturas y arquitectura
 
 ## Historial

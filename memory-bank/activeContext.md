@@ -14,13 +14,19 @@ Estas reglas aplican en TODOS los chats de este proyecto, sin que el usuario deb
 Ver techContext.md. Ciudad piloto: Villahermosa / Cunduacán, Tabasco. Paquete base: `com.farmacompara`.
 
 ## Siguiente paso
-Fase 1 Paso 3: frontend Vite + React + TS + Tailwind base.
+Fase 2: Datos reales - Importación sucursales Overpass + Scrapers.
 
 ## Preguntas abiertas
-- Hosting gratuito del backend (Render) y estrategia del cron.
+- ~~Hosting gratuito del backend (Render) y estrategia del cron.~~ **RESUELTO**
 
 ## Notas
 - Fase 1 Paso 1 completado: Neon + PostGIS configurado, ramas main/test listas.
+- **Despliegue configurado al 100%**: Backend → Render (Docker), Frontend → Cloudflare Pages (SPA estático).
+- Variables de entorno listas: JWT_SECRET, DATABASE_URL (Neon), VITE_API_URL (backend Render).
+- Archivos de despliegue: render.yaml, wrangler.toml, backend/Dockerfile, frontend/Dockerfile, nginx.conf.
+- **Correcciones definitivas aplicadas (27 Nov 2026)**:
+  - Backend: application-prod.yml lee ${SPRING_DATASOURCE_URL} con fallback ${DB_URL} para Neon
+  - Frontend: wrangler.toml build command corregido a `npm install --prefix frontend && npm run build --prefix frontend`
 ## Cierre de Sesión
 Se activa cuando el usuario escribe "Hasta aquí llegamos por hoy":
 - Paso A: explicar a detalle y paso a paso todo lo construido en la sesión.
