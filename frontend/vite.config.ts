@@ -21,4 +21,6 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
+  // Definir variables de entorno que empiecen con VITE_
+  envPrefix: 'VITE_',
 });

@@ -1,6 +1,6 @@
 # Render deployment configuration for Farmacompara
 # Backend: Spring Boot application (Docker)
-# Frontend: React SPA (Static Files via Render)
+# Frontend: Deployed separately to Cloudflare Pages (see wrangler.toml)
 # Co-Authored-By: Claude Code <noreply@anthropic.com>
 
 services:
@@ -22,17 +22,6 @@ services:
         type: plaintext
       - key: DATABASE_URL
         value: "${DATABASE_URL}"
-        type: plaintext
-
-  - type: web
-    name: farmacompara-frontend
-    env: docker
-    plan: free
-    region: oregon
-    dockerfilePath: ./frontend/Dockerfile
-    envVars:
-      - key: VITE_API_BASE
-        value: "https://farmacompara-backend.onrender.com"
         type: plaintext
 
 # Optional: Cron job for scheduled scraping

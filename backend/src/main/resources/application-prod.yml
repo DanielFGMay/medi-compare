@@ -16,6 +16,10 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+# Server port - Render provides PORT env var
+server:
+  port: ${PORT:8080}
+
 logging:
   level:
     org.springframework: WARN

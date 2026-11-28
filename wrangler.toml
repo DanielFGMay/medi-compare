@@ -1,0 +1,21 @@
+# Cloudflare Pages configuration for Farmacompara Frontend
+# This is a static SPA (React + Vite), NOT a Cloudflare Worker
+# Deploy with: npx wrangler pages deploy frontend/dist --project-name=farmacompara-frontend
+
+name = "farmacompara-frontend"
+compatibility_date = "2024-11-27"
+pages_build_output_dir = "frontend/dist"
+
+# Build configuration
+[build]
+command = "cd frontend && npm run build"
+cwd = "."
+
+# Environment variables for production build
+[build.environment]
+VITE_API_URL = "https://farmacompara-backend.onrender.com"
+
+# Preview deployment settings
+[preview]
+command = "npx vite preview --port 3000 --host"
+cwd = "frontend"
